@@ -1,0 +1,22 @@
+{
+  "name": "notetaker",
+  "version": "1.0.0",
+  "description": "note taker assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matt-c-knight/notetaker.git"
+  },
+  "author": "matt knight",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matt-c-knight/notetaker/issues"
+  },
+  "homepage": "https://github.com/matt-c-knight/notetaker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
