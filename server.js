@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 var fs = require("fs");
 var newNote; 
+var notes = [];
 // require('./public/assets/js/index');
 
 // var newNote;
@@ -22,20 +23,25 @@ res.sendFile(path.join(__dirname, "notes.html"));
 });
 
 app.get("/api/notes", function(req, res) {
-  
-  
-  fs.readFile('./db.json', 'utf8', function(err, data) {
+  fs.readFilesync('./db.json', 'utf8', function(err, data) {
    data = JSON.parse(data);
    console.log(data);
    res.end(JSON.stringify(data));
     
   })
+})
 
+app.get("/api/notes/:id", function(req, res) {
+  var chosen = req.params.id;
+
+  console.log(chosen);
 })
 
 app.post("/api/notes", function(req, res) {
    newNote = req.body;
-  console.log(newNote);
+  // console.log(newNote);
+  notes.push(newNote);
+  // console.log(notes[1])
   var data = JSON.stringify(newNote, null, 2);
   fs.appendFileSync('db.json', data, (err) => {
     if (err) throw err;
