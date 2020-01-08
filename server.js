@@ -33,28 +33,6 @@ app.get("/api/notes", function(req, res) {
   })
 })
 
-// app.get("/api/notes/:id", function(req, res) {
-//   var chosen = req.params.id;
-//   var removeNote;
-//   chosen = parseInt(chosen);
-  
-//   console.log(notes[1].id);
-//   // console.log(typeof chosen);
-//   // notes = notes.splice(chosen,chosen);
-//   for(i = 0; i < notes.length; i++) {
-//    if(notes[i].id === chosen){
-//     notes = notes.splice(i,i);
-//     var data = JSON.stringify(notes, null, 2);
-//     fs.writeFileSync('db.json', data, (err) => {
-//       if (err) throw err;
-//       console.log('data written to file')
-//       console.log(data)
-//     });
-//    }
-//   }
-
-//   })
-
 app.post("/api/notes", function(req, res) {
    newNote = req.body;
    newNote.id = num;
@@ -67,8 +45,29 @@ app.post("/api/notes", function(req, res) {
     console.log('data written to file')
   });
 num++;
-// return notes;
+return notes;
 })
+
+app.get("/api/notes/:id", function(req, res) {
+  var chosen = req.params.id;
+  var removeNote;
+  chosen = parseInt(chosen);
+  
+console.log(notes.length)  // console.log(typeof chosen);
+  for(i = 0; i < notes.length; i++) {
+   if(notes[i].id === chosen){
+    notes.splice(i,1);
+    console.log(notes)
+    var data = JSON.stringify(notes, null, 2);
+    fs.writeFileSync('db.json', data, (err) => {
+      if (err) throw err;
+      console.log('data written to file')
+      console.log(data)
+    });
+   }
+  }
+
+  })
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
