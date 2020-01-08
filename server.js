@@ -25,7 +25,7 @@ res.sendFile(path.join(__dirname, "notes.html"));
 });
 
 app.get("/api/notes", function(req, res) {
-  fs.readFileSync('./db.json', 'utf8', function(err, data) {
+  fs.readFile('./db.json', 'utf8', function(err, data) {
    data = JSON.parse(data);
    console.log(data);
    res.end(JSON.stringify(data));
